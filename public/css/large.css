@@ -1,0 +1,55 @@
+@media only screen and (min-width: 55rem){
+    body{
+        max-width: 900px;
+        margin: 0 auto;
+        background-image: url("/images/site/checkerboard.jpg");
+    }
+    #wrapper{
+        background-color: #fff;
+        border: 3px solid #26408B;
+        border-radius: 20px;
+        padding: 0.75em;
+        margin-top: 3em;
+        margin-bottom: 3em;
+    }
+    #tools a{
+        font-size: 1.2em;
+    }
+    nav ul{
+        display: flex;
+        justify-content: stretch;
+        margin: 0;
+        padding: 0;
+    }
+    nav ul li a{
+        letter-spacing: 0.08em;
+        font-size: 1.1em;
+        padding-left: 3.1em;
+        padding-right: 3.1em;
+    }
+    .delorean-info{
+        font-size: 1.1em; 
+        letter-spacing: 0.07em;
+    }
+    .delorean-info img{
+        width: 30%;
+    }
+    #car-info{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* justify-content: space-around; */
+    }
+    #upgrades-delorean{
+        /* order: 0; */
+        grid-column: 1;
+        grid-row: 1;
+        padding-right: 3em;
+        margin-left: 1em;
+    }
+    #reviews-delorean{
+        /* order: 1; */
+        grid-column: 2;
+        grid-row: 1;
+        font-size: 1.1em;
+    }
+}
