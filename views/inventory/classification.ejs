@@ -1,0 +1,12 @@
+<!-- Heading content -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Message Block -->
+<%# messages() %>
+
+<!-- Grid -->
+<%- grid %>
