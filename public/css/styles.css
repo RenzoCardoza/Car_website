@@ -30,15 +30,20 @@ body{
 nav ul{
   list-style-type: none;
   display: flex;
+  flex-direction: column;
+
   padding: 0;
+}
+nav ul li{
+  /* padding: .7em; */
+  flex-grow: 3;
 }
 nav ul li a{
   background-color: #26408B;
   color: #E2F3EC;
-  padding: .8em;
-}
-nav ul li a{
+  padding: .7em;
   text-decoration: none;
+  display: block;
 }
 nav ul li a:nth-child(1), nav ul li a:nth-child(2), nav ul li a:nth-child(3),
 nav ul li a:nth-child(4) {
@@ -123,4 +128,31 @@ nav ul li a:hover{
 }
 footer{
   font-family: 'Montserrat', sans-serif;
+}
+/* Here will be code for the inventory view */
+#inv-display{
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  padding-left: 0;
+}
+#inv-display li{
+  list-style-type: none;
+  padding: 1em;
+  border: 1px solid #26408B;
+  border-radius: 12px;
+  margin: .5em;
+}
+#inv-display li a{
+  text-decoration: none;
+  color: black;
+}
+#inv-display li a img{
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+.namePrice{
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.08em;
 }

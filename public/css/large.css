@@ -17,6 +17,7 @@
     }
     nav ul{
         display: flex;
+        flex-direction: row;
         justify-content: stretch;
         margin: 0;
         padding: 0;
@@ -24,8 +25,8 @@
     nav ul li a{
         letter-spacing: 0.08em;
         font-size: 1.1em;
-        padding-left: 3.1em;
-        padding-right: 3.1em;
+        padding-left: 2.3em;
+        padding-right: 2.3em;
     }
     .delorean-info{
         font-size: 1.1em; 
@@ -51,5 +52,15 @@
         grid-column: 2;
         grid-row: 1;
         font-size: 1.1em;
+    }
+    /* Here will be the CSS for the Inventory Content */
+    #inv-display{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    #inv-display li{
+        max-width: 14em;
     }
 }
