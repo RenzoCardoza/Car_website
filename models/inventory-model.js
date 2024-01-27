@@ -25,6 +25,7 @@ async function getInventoryByClassificationId(classification_id) {
     }
 }
 
+// Get all the info on one specific item on the inventory
 async function getInventoryByInventoryId(inventory_id){
   try {
     const data = await pool.query(
