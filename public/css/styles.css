@@ -152,7 +152,17 @@ footer{
   height: auto;
   border-radius: 5px;
 }
-.namePrice{
+.namePrice, #vehicle-display span{
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 0.08em;
 }
+/* vehicle view */
+#vehicle-display img{
+  max-width: 100%;
+  height: auto;
+}
+#vehicle-details span{
+  display: block;
+  padding: 1em;
+}
+
