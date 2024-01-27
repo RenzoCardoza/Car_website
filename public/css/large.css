@@ -63,4 +63,18 @@
     #inv-display li{
         max-width: 14em;
     }
+    #vehicle-display{
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        grid-gap: 1em;
+    }
+    #vehicle-display img{
+        grid-column: 1;
+        grid-row: 1;
+    }
+    #vehicle-details{
+        grid-column: 2;
+        grid-row: 1 / 3;
+        margin-left: 1.2em;
+    }
 }

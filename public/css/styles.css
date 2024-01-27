@@ -27,6 +27,9 @@ body{
   color: black;
   font-size: 0.9em;
 }
+nav{
+  margin-bottom: 3em;
+}
 nav ul{
   list-style-type: none;
   display: flex;
@@ -35,7 +38,6 @@ nav ul{
   padding: 0;
 }
 nav ul li{
-  /* padding: .7em; */
   flex-grow: 3;
 }
 nav ul li a{
@@ -157,6 +159,9 @@ footer{
   letter-spacing: 0.08em;
 }
 /* vehicle view */
+#vehicle-display{
+  margin-top: 2em;
+}
 #vehicle-display img{
   max-width: 100%;
   height: auto;
@@ -165,4 +170,9 @@ footer{
   display: block;
   padding: 1em;
 }
-
+.vehicle-price, .vehicle-color{
+  background-color: #E2F3EC;
+}
+footer{
+  margin-top: 3em;
+}

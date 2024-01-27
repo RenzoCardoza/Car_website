@@ -69,7 +69,7 @@ Util.buildVehicleDetails = async function(vehicle){
   container += '<span class="vehicle-price"><strong>Price:</strong> $' + new Intl.NumberFormat('en-US').format(vehicle[0].inv_price) + '</span>'
   container += `<span class="vehicle-desc"><strong>Description:</strong> ${vehicle[0].inv_description}</span>`
   container += `<span class="vehicle-color"><strong>Color:</strong> ${vehicle[0].inv_color}</span>`
-  container += `<span class="vehicle-miles"><strong>Miles:</strong> ${vehicle[0].inv_miles}</span>`
+  container += `<span class="vehicle-miles"><strong>Miles:</strong> ${new Intl.NumberFormat('en-US').format(vehicle[0].inv_miles)}</span>`
 
   return container
 }
