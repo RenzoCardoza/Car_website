@@ -33,7 +33,7 @@ Util.buildClassificationGrid = async function(data){
       grid = '<ul id="inv-display">'
       data.forEach(vehicle => { 
         grid += '<li>'
-        grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
+        grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id
         + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
         + ' details"><img src="' + vehicle.inv_thumbnail 
         +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
@@ -57,10 +57,10 @@ Util.buildClassificationGrid = async function(data){
     return grid
 }
 
-/* ************************************** REVIEW
+/* **************************************
 * Build the vehicle details HTML
 * ************************************ */
-Util.buildVehicleDetails = async function(vehicle){
+Util.buildVehicleDetail = async function(vehicle){ //missing s on the word detail"s"
   // create the container element
   let container = '<div id="vehicle-display">'
   container += `<img src="${vehicle[0].inv_image}" alt="Image of ${vehicle[0].inv_make} ${vehicle[0].inv_model} on CSE Motors">`
@@ -70,6 +70,8 @@ Util.buildVehicleDetails = async function(vehicle){
   container += `<span class="vehicle-desc"><strong>Description:</strong> ${vehicle[0].inv_description}</span>`
   container += `<span class="vehicle-color"><strong>Color:</strong> ${vehicle[0].inv_color}</span>`
   container += `<span class="vehicle-miles"><strong>Miles:</strong> ${new Intl.NumberFormat('en-US').format(vehicle[0].inv_miles)}</span>`
+  container += `</section>`
+  container += `</div>`
 
   return container
 }
