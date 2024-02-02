@@ -1,0 +1,31 @@
+<!-- title view -->
+<% if (title){ %>
+    <h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+<!-- if any message sent will be here -->
+<%- messages() %>
+
+<!-- Form for the Register view -->
+<form method="get" action="#">
+    <fieldset class="register-set">
+        <label class="register-data">
+            First Name
+            <input type="text" name="account_firstname" required>
+        </label>
+        <label class="register-data">
+            Last Name
+            <input type="text" name="account_lastname" required>
+        </label>
+        <label class="register-data">
+            E-mail Address
+            <input type="text" name="account_email" required>
+        </label>
+        <label class="register-data">
+            Password
+            <input type="text" name="account_password" required>
+        </label>
+        <input type="submit" class="submitBtn" id="registerBtn" value="Register">
+    </fieldset>
+</form>

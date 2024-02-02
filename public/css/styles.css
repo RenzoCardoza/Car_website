@@ -197,12 +197,13 @@ form fieldset{
   border-radius: 4px;
   background-color: #26408B;
 }
-form label.email-password{
+form label.email-password, form label.register-data{
   display: block;
   margin-bottom: 0.5em;
   color: #A6CFD5;
 }
-form label.email-password input{
+form label.email-password input, 
+form label.register-data input{
   display: block;
   width: 100%;
   padding: .35em;
@@ -225,4 +226,3 @@ form fieldset span{
   text-align: center;
   margin-top: 1.2em;
 }
-
