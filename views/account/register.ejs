@@ -13,13 +13,13 @@
   <%  }) %>
    </ul>
   <% } %>
-  
+
 <!-- Form for the Register view -->
 <form method="post" action="/account/register">
     <fieldset class="register-set">
         <label class="register-data">
             First Name
-            <input type="text" name="account_firstname" required>
+            <input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>">
         </label>
         <label class="register-data">
             Last Name
