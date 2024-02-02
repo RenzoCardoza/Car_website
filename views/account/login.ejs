@@ -13,11 +13,18 @@
     <fieldset id="email-pass">
         <label class="email-password">
             E-mail
-            <input type="text" name="account_email">
+            <input type="email" name="account_email" required>
         </label>
         <label class="email-password">
             Password
-            <input type="password" name="account_password">
+            <div id="pswd-requirements">
+                At least 12 characters:<br> 
+                1 must a number<br>
+                1 must be lowercase letter<br>
+                1 must be capital letter<br>
+                1 must be a non-alphanumeric character
+            </div>
+            <input type="password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
         </label>
         <input type="submit" class="submitBtn" value="Login">
         <span>No account? <a href="register" title="Create your account now!">Sign-up</a></span>   

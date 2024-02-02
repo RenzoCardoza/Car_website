@@ -226,3 +226,7 @@ form fieldset span{
   text-align: center;
   margin-top: 1.2em;
 }
+#pswd-requirements{
+  margin-bottom: .5em;
+  font-size: .7em;
+}
