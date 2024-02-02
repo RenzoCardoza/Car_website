@@ -1,0 +1,25 @@
+<!-- title view -->
+<% if (title){ %>
+    <h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+<!-- if any message sent will be here -->
+<%- messages() %>
+
+<!-- Form -->
+<form method="get" action="">
+    <h2>Sign In to your account</h2>
+    <fieldset id="email-pass">
+        <label class="email-password">
+            E-mail
+            <input type="text" name="account_email">
+        </label>
+        <label class="email-password">
+            Password
+            <input type="text" name="account_password">
+        </label>
+        <input type="submit" class="submitBtn" value="Login">
+        <span>No account? <a href="#" title="Create your account now!">Sign-up</a></span>   
+    </fieldset>
+</form>

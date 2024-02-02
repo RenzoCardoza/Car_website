@@ -128,7 +128,7 @@ nav ul li a:hover{
   text-decoration: none;
   color: black;
 }
-footer{
+footer, form{
   font-family: 'Montserrat', sans-serif;
 }
 /* Here will be code for the inventory view */
@@ -190,3 +190,39 @@ footer{
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 0.07em;
 }
+/* Form CSS */
+form fieldset{
+  padding: 1em;
+  max-width: 60%;
+  border-radius: 4px;
+  background-color: #26408B;
+}
+form label.email-password{
+  display: block;
+  margin-bottom: 0.5em;
+  color: #A6CFD5;
+}
+form label.email-password input{
+  display: block;
+  width: 100%;
+  padding: .35em;
+}
+.submitBtn{
+  padding: .35em;
+  margin: 0 auto;
+  display: block;
+  border-radius: 15px;
+  border: 2px solid #A6CFD5;
+  padding-left: 1.2em;
+  padding-right: 1.2em;
+  margin-top: 1em;
+}
+form fieldset span, form fieldset span a{
+  color: #A6CFD5;
+}
+form fieldset span{
+  display: block;
+  text-align: center;
+  margin-top: 1.2em;
+}
+
