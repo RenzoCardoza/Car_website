@@ -8,7 +8,7 @@
 <%- messages() %>
 
 <!-- Form for the Register view -->
-<form method="get" action="#">
+<form method="post" action="/account/register">
     <fieldset class="register-set">
         <label class="register-data">
             First Name
@@ -24,7 +24,7 @@
         </label>
         <label class="register-data">
             Password
-            <input type="text" name="account_password" required>
+            <input type="password" name="account_password" required>
         </label>
         <input type="submit" class="submitBtn" id="registerBtn" value="Register">
     </fieldset>

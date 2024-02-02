@@ -9,5 +9,6 @@ router.get("/login", utilities.handleErrors(accController.buildLogin));
 
 //Route for the registration view
 router.get("/register", utilities.handleErrors(accController.buildRegister));
+router.post('/register', utilities.handleErrors(accController.registerAccount));
 
 module.exports = router;

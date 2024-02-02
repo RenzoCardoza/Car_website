@@ -16,6 +16,7 @@ const accRoute = require("./routes/accountRoute.js")
 const utilities = require("./utilities/index.js")
 const session = require("express-session")
 const pool = require('./database/')
+const bodyParser = require("body-parser")
 
 /* ***********************
  * View Engine and Templates
@@ -37,6 +38,8 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -59,6 +62,7 @@ app.use("/account", accRoute)
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
+
 
 /* ***********************
 * Express Error Handler
