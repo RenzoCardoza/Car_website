@@ -25,4 +25,14 @@ async function checkExistingEmail(account_email){
   }
 }
 
-module.exports = {registerAccount, checkExistingEmail}
+async function checkCredentials(account_email, account_password){
+  try {
+      const sql = "SELECT * FROM account WHERE account_email = $1 AND account_password =$2"
+      const password = await pool.query(sql, [account_email, account_password])
+      return password.rowCount
+  } catch (error) {
+      return error.message
+  }
+}
+
+module.exports = {registerAccount, checkExistingEmail, checkCredentials}
