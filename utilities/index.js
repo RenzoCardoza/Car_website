@@ -60,7 +60,7 @@ Util.buildClassificationGrid = async function(data){
 /* **************************************
 * Build the vehicle details HTML
 * ************************************ */
-Util.buildVehicleDetail = async function(vehicle){ //missing s on the word detail"s"
+Util.buildVehicleDetails = async function(vehicle){
   // create the container element
   let container = '<div id="vehicle-display">'
   container += `<img src="${vehicle[0].inv_image}" alt="Image of ${vehicle[0].inv_make} ${vehicle[0].inv_model} on CSE Motors">`
@@ -72,6 +72,18 @@ Util.buildVehicleDetail = async function(vehicle){ //missing s on the word detai
   container += `<span class="vehicle-miles"><strong>Miles:</strong> ${new Intl.NumberFormat('en-US').format(vehicle[0].inv_miles)}</span>`
   container += `</section>`
   container += `</div>`
+
+  return container
+}
+
+/* **************************************
+* Build the management view
+* ************************************ */
+Util.buildManagementView = async function() {
+  //Create a container for the elements (two links)
+  let container = '<div id="management-links">'
+  container += '<a href=""><p>Add New Classification</p></a>'
+  container += '<a href=""><p>Add New Vehicle</p></a>'
 
   return container
 }

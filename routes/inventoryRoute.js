@@ -10,4 +10,7 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 // Route to build the vehicle details by the inventory Id
 router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByInvId));
 
+// Route to get the management view
+router.get("/", utilities.handleErrors(invController.buildManagement));
+
 module.exports = router;

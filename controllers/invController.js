@@ -20,7 +20,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
   })
 }
 
-/* *************************** REIVIEW
+/* ***************************
  *  Build inventory by inv ID
  * ************************** */
 invCont.buildByInvId = async function(req, res, next){
@@ -33,6 +33,20 @@ invCont.buildByInvId = async function(req, res, next){
     title: vehicleName,
     nav,
     vehicleView,
+    errors: null,
+  })
+}
+
+/* ***************************
+ *  Build the management view
+ * ************************** */
+invCont.buildManagement = async function(req, res, next){
+  const managementView = await utilities.buildManagementView()
+  let nav = await utilities.getNav()
+  res.render("./inventory/management", {
+    title: "Vehicle Management",
+    nav,
+    managementView,
     errors: null,
   })
 }
