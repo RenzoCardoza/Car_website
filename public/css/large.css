@@ -81,6 +81,10 @@
     #add-class-frm h3, #add-class-frm fieldset{
         margin: 0 auto;
     }
+    #add-vehicle-frm{
+        margin-left: 4.5em;
+        margin-right: 4.5em;
+    }
     .vehicle-titles{
         text-align: left;
     } 

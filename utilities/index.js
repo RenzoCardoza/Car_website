@@ -84,7 +84,7 @@ Util.buildManagementView = async function() {
   let container = '<div id="management-links">'
   container += '<a href="/inv/add-classification"><p>Add New Classification</p></a>'
   container += '<a href="/inv/add-vehicle"><p>Add New Vehicle</p></a>'
-
+  container += '</div>'
   return container
 }
 
@@ -93,7 +93,7 @@ Util.buildManagementView = async function() {
 * ************************************ */
 Util.buildNewClassificationView = async function() {
   //Container for the elements
-  let container = '<form id="add-class-frm" action="/inv/" method="post">'
+  let container = '<form id="add-class-frm"  method="post" action="/inv/add-classification">'
   container += '<h3>This field is required</h3>'
   container += '<fieldset id="classification-name">'
   container += '<label class="class-name">'
@@ -114,14 +114,14 @@ Util.buildNewClassificationView = async function() {
 Util.buildNewVehicleView = async function() {
   //Container for the form 
   let data = await invModel.getClassifications()
-  let container = '<form id="add-vehicle-frm" action="/inv/" method="post">'
+  let container = '<form id="add-vehicle-frm" method="post" action="/inv/add-vehicle">'
   container += '<h3>All fields are required</h3>'
   container += '<fieldset id="new-vehicle-data">'
   container += '<label>'
   container += '<span class="vehicle-titles">Classification</span>'
-  container += '<select id="classification-selection" name="classification_name" required>' 
+  container += '<select id="classification-selection" name="classification_id" required>' 
   data.rows.forEach((row) => {
-    container += `<option value="${row.classification_name}">${row.classification_name}</option>`
+    container += `<option value="${row.classification_id}">${row.classification_name}</option>`
   })
   container += '</select>'
   container += '</label>'
@@ -135,7 +135,7 @@ Util.buildNewVehicleView = async function() {
   container += '</label>' 
   container += '<label>'
   container += '<span class="vehicle-titles">Description</span>'
-  container += '<textarea name="inv_description rows="8" cols="25">Provide a small description of the vehicle'
+  container += '<textarea name="inv_description" rows="8" cols="25" placeholder="Provide a small description of the vehicle" required>'
   container += '</textarea>'
   container += '</label>'
   container += '<label>'

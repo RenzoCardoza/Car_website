@@ -19,4 +19,21 @@ router.get("/add-classification", utilities.handleErrors(invController.buildNewC
 // Route to add a vehicle
 router.get("/add-vehicle", utilities.handleErrors(invController.buildNewVehicle));
 
+// process the add new classification
+router.post(
+    "/add-classification", 
+    //some validation goes here
+    // 
+    // 
+    utilities.handleErrors(invController.addNewClassification)
+);
+// process the add new inventory item
+router.post(
+    "/add-vehicle", 
+    //some validation goes here
+    // 
+    // 
+    utilities.handleErrors(invController.addNewVehicle)
+);
+
 module.exports = router;

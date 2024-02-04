@@ -80,4 +80,69 @@ invCont.buildNewVehicle = async function(req, res, next){
   })
 }
 
+/* ***************************
+ *  ADD A NEW CLASSIFICATION
+ * ************************** */
+invCont.addNewClassification= async function(req, res, next) {
+  let nav = await utilities.getNav()
+  const { classification_name } = req.body
+  const classificationResult = await invModel.updateClassifications(classification_name)
+  const newClassification = await utilities.buildNewClassificationView()
+  const managementView = await utilities.buildManagementView()
+  if (classificationResult) {
+    nav = await utilities.getNav()
+    req.flash(
+      "notice",
+      `Congratulations, ${classification_name} was registered correctly.`
+    )
+    res.status(201).render("inventory/management", {
+      title: "Vehicle Management",
+      nav,
+      managementView,
+    })
+  } else {
+    req.flash("notice", "Sorry, something went wrong")
+    res.status(501).render("inventory/add-classification", {
+      title: "Add New Classification",
+      nav,
+      newClassification,
+      errors: null,
+    })
+  }
+}
+
+/* ***************************
+ *  ADD A NEW VEHICLE
+ * ************************** */
+invCont.addNewVehicle = async function(req, res, next){
+  let nav = await utilities.getNav()
+  const { classification_id, inv_make, inv_model, inv_year, 
+    inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body
+  const managementView = await utilities.buildManagementView()
+  const newVehicle = await utilities.buildNewVehicleView()
+  const addVehicleResult = await invModel.updateInventory(
+    inv_make, inv_model, inv_year, inv_description, inv_image,
+    inv_thumbnail, inv_price, inv_miles, inv_color, classification_id
+  )
+  if (addVehicleResult) {
+    req.flash(
+      "notice",
+      `Congratulations, the vehicle was registered correctly.`
+    )
+    res.status(201).render("inventory/management", {
+      title: "Vehicle Management",
+      nav,
+      managementView,
+    })
+  } else {
+    req.flash("notice", "Sorry, something went wrong")
+    res.status(501).render("inventory/add-inventory", {
+      title: "Add Inventory",
+      nav,
+      newVehicle,
+      errors: null,
+    })
+  }
+}
+
 module.exports = invCont
