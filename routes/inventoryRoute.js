@@ -16,4 +16,7 @@ router.get("/", utilities.handleErrors(invController.buildManagement));
 // Route to add a new classification
 router.get("/add-classification", utilities.handleErrors(invController.buildNewClassification));
 
+// Route to add a vehicle
+router.get("/add-vehicle", utilities.handleErrors(invController.buildNewVehicle));
+
 module.exports = router;

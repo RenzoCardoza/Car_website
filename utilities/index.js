@@ -83,13 +83,13 @@ Util.buildManagementView = async function() {
   //Create a container for the elements (two links)
   let container = '<div id="management-links">'
   container += '<a href="/inv/add-classification"><p>Add New Classification</p></a>'
-  container += '<a href=""><p>Add New Vehicle</p></a>'
+  container += '<a href="/inv/add-vehicle"><p>Add New Vehicle</p></a>'
 
   return container
 }
 
 /* **************************************
-* Build the management view
+* Build the add classification view
 * ************************************ */
 Util.buildNewClassificationView = async function() {
   //Container for the elements
@@ -102,6 +102,67 @@ Util.buildNewClassificationView = async function() {
   container += '<input type="text" id="classification-name" name="classification_name" required pattern="^[a-zA-Z]+$">'
   container += '</label>'
   container += '<input type="submit" class="submitBtn" value="Add new classfication">'
+  container += '</fieldset>'
+  container += '</form>'
+
+  return container
+}
+
+/* **************************************
+* Build the add vehicle view
+* ************************************ */
+Util.buildNewVehicleView = async function() {
+  //Container for the form 
+  let data = await invModel.getClassifications()
+  let container = '<form id="add-vehicle-frm" action="/inv/" method="post">'
+  container += '<h3>All fields are required</h3>'
+  container += '<fieldset id="new-vehicle-data">'
+  container += '<label>'
+  container += '<span class="vehicle-titles">Classification</span>'
+  container += '<select id="classification-selection" name="classification_name" required>' 
+  data.rows.forEach((row) => {
+    container += `<option value="${row.classification_name}">${row.classification_name}</option>`
+  })
+  container += '</select>'
+  container += '</label>'
+  container += '<label>'
+  container += '<span class="vehicle-titles">Make</span>'
+  container += '<input type="text" id="invMake" name="inv_make" required pattern="^.{3,}$" placeholder="3 characters minimum">'
+  container += '</label>'
+  container += '<label>'
+  container += '<span class="vehicle-titles">Model</span>'
+  container += '<input type="text" id="invModel" name="inv_model" required pattern="^.{3,}$" placeholder="3 characters minimum">'
+  container += '</label>' 
+  container += '<label>'
+  container += '<span class="vehicle-titles">Description</span>'
+  container += '<textarea name="inv_description rows="8" cols="25">Provide a small description of the vehicle'
+  container += '</textarea>'
+  container += '</label>'
+  container += '<label>'
+  container += '<span class="vehicle-titles">Image Path</span>'
+  container += '<input type="text" id="invImage" name="inv_image" required value="/images/vehicles/no-image.png">'
+  container += '</label>'
+  container += '<label>'
+  container += '<span class="vehicle-titles">Thumbnail Path</span>'
+  container += '<input type="text" id="invThumbnail" name="inv_thumbnail" required value="/images/vehicles/no-image-tn.png">'
+  container += '</label>'
+  container += '<label>'
+  container += '<span class="vehicle-titles">Price</span>'
+  container += '<input type="text" id="invPrice" name="inv_price" required pattern="^\\d+(,\\d+)?$" placeholder="Integers or decimal using comma">'
+  container += '</label>'
+  container += '<label>'
+  container += '<span class="vehicle-titles">Year</span>'
+  container += '<input type="text" id="invYear" name="inv_year" required pattern="^(202[0-4]|20[0-1][0-9]|200[0-9]|19[0-9]{2}|[1-9][0-9]{0,2})$" placeholder="4-digit year">'
+  container += '</label>'
+  container += '<label>'
+  container += '<span class="vehicle-titles">Miles</span>'
+  container += '<input type="text" id="invMiles" name="inv_miles" required pattern="^[1-9]\\d*(,\\d+)?$" placeholder="only digits">'
+  container += '</label>'
+  container += '<label>'
+  container += '<span class="vehicle-titles">Color</span>'
+  container += '<input type="text" id="invColor" name="inv_color" required placeholder="Color of the vehicle">'
+  container += '</label>'
+  container += '<input type="submit" class="submitBtn" id="vehicleBtn" value="Add new Vehicle">'
   container += '</fieldset>'
   container += '</form>'
 

@@ -238,12 +238,12 @@ form fieldset span{
   letter-spacing: 0.07em;
 }
 /* add new classification view */
-#add-class-frm{
+#add-class-frm, #add-vehicle-frm{
   padding: 1em;
   background-color: #26408B;
   border-radius: 10px;
 }
-#add-class-frm h3{
+#add-class-frm h3, #add-vehicle-frm h3{
   color: #A6CFD5;
 }
 #add-class-frm fieldset{
@@ -265,4 +265,23 @@ form fieldset span{
   width: 80%;
   margin-top: .9em;
   margin-bottom: .8em;
+}
+/* New vehicle views */
+.vehicle-titles{
+  color: #A6CFD5;
+  margin-top: 0;
+}
+#add-vehicle-frm input, #add-vehicle-frm textarea,
+#add-vehicle-frm select{
+  width: 100%;
+  margin-top: .7em;
+  margin-bottom: .7em;
+  padding: .5em;
+}
+#add-vehicle-frm fieldset{
+  width: 100%;
+  max-width: 100%;
+}
+.submitBtn#vehicleBtn{
+  margin-top: 1.5em;
 }

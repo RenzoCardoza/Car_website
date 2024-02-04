@@ -80,5 +80,8 @@
     /* add new classification css */
     #add-class-frm h3, #add-class-frm fieldset{
         margin: 0 auto;
+    }
+    .vehicle-titles{
+        text-align: left;
     } 
 }
