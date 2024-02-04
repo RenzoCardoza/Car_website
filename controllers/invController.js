@@ -1,3 +1,4 @@
+const { render } = require("ejs")
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities")
 
@@ -47,6 +48,20 @@ invCont.buildManagement = async function(req, res, next){
     title: "Vehicle Management",
     nav,
     managementView,
+    errors: null,
+  })
+}
+
+/* ***************************
+ *  Build the new classification view
+ * ************************** */
+invCont.buildNewClassification = async function(req, res, next){
+  const newClassification = await utilities.buildNewClassificationView()
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-classification", {
+    title: "Add a New Classification",
+    nav,
+    newClassification,
     errors: null,
   })
 }

@@ -82,8 +82,28 @@ Util.buildVehicleDetails = async function(vehicle){
 Util.buildManagementView = async function() {
   //Create a container for the elements (two links)
   let container = '<div id="management-links">'
-  container += '<a href=""><p>Add New Classification</p></a>'
+  container += '<a href="/inv/add-classification"><p>Add New Classification</p></a>'
   container += '<a href=""><p>Add New Vehicle</p></a>'
+
+  return container
+}
+
+/* **************************************
+* Build the management view
+* ************************************ */
+Util.buildNewClassificationView = async function() {
+  //Container for the elements
+  let container = '<form id="add-class-frm" action="/inv/" method="post">'
+  container += '<h3>This field is required</h3>'
+  container += '<fieldset id="classification-name">'
+  container += '<label class="class-name">'
+  container += 'Classification Name'
+  container += '<div id="new-class-rules">NAME MUST BE ALPHABETIC CHARACTERS ONLY</div>'
+  container += '<input type="text" id="classification-name" name="classification_name" required pattern="^[a-zA-Z]+$">'
+  container += '</label>'
+  container += '<input type="submit" class="submitBtn" value="Add new classfication">'
+  container += '</fieldset>'
+  container += '</form>'
 
   return container
 }

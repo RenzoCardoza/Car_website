@@ -237,3 +237,32 @@ form fieldset span{
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 0.07em;
 }
+/* add new classification view */
+#add-class-frm{
+  padding: 1em;
+  background-color: #26408B;
+  border-radius: 10px;
+}
+#add-class-frm h3{
+  color: #A6CFD5;
+}
+#add-class-frm fieldset{
+  max-width: max-content;
+  width: 100%;
+  padding: 1em;
+}
+#add-class-frm fieldset label{
+  color: #A6CFD5;
+  font-size: 1.3em;
+}
+#new-class-rules{
+  font-size: .6em;
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+#classification-name{
+  padding: .5em;
+  width: 80%;
+  margin-top: .9em;
+  margin-bottom: .8em;
+}
