@@ -85,10 +85,21 @@ async function updateInventory(inv_make, inv_model, inv_year, inv_description,
     } catch (error) {
       console.error("Update inventory " + error)
     }
-  }
+}
 
+//Check if classification exists withing the DB
+async function checkExistingClassification(classification_name){
+  try {
+    const sql = "SELECT * FROM public.classification WHERE classification_name = $1"
+    const classification = await pool.query(sql, [classification_name])
+    return classification.rowCount
+  } catch (error) {
+    return error.message
+  }
+}
 
 module.exports = {getClassifications, 
   getInventoryByClassificationId, 
   getInventoryByInventoryId, 
-  updateClassifications, updateInventory};
+  updateClassifications, updateInventory,
+  checkExistingClassification};

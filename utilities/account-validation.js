@@ -47,7 +47,7 @@ validate.registationRules = () => {
     ]
 }
 /*  **********************************
- *  Registration Data Validation Rules
+ *  Login Data Validation Rules
  * ********************************* */
 validate.loginRules = () => {
     return [
