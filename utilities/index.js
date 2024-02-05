@@ -98,8 +98,8 @@ Util.buildNewClassificationView = async function() {
   container += '<fieldset id="classification-name">'
   container += '<label class="class-name">'
   container += 'Classification Name'
-  container += '<div id="new-class-rules">NAME MUST BE ALPHABETIC CHARACTERS ONLY</div>'
-  container += '<input type="text" id="classification-name" name="classification_name" required pattern="^[a-zA-Z]+$">'
+  container += '<span id="new-class-rules">NAME MUST BE ALPHABETIC CHARACTERS ONLY</span>'
+  container += '<input type="text" id="classificationName" name="classification_name" required pattern="^[a-zA-Z]+$">'
   container += '</label>'
   container += '<input type="submit" class="submitBtn" value="Add new classfication">'
   container += '</fieldset>'
@@ -120,6 +120,7 @@ Util.buildNewVehicleView = async function() {
   container += '<label>'
   container += '<span class="vehicle-titles">Classification</span>'
   container += '<select id="classification-selection" name="classification_id" required>' 
+  container += '<option value="">--Choose a classification--</option>'
   data.rows.forEach((row) => {
     container += `<option value="${row.classification_id}">${row.classification_name}</option>`
   })

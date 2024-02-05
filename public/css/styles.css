@@ -260,9 +260,9 @@ form fieldset span{
   margin-top: .5em;
   margin-bottom: .5em;
 }
-#classification-name{
+#classificationName{
   padding: .5em;
-  width: 80%;
+  width: 100%;
   margin-top: .9em;
   margin-bottom: .8em;
 }
