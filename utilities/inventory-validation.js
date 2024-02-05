@@ -65,6 +65,7 @@ validateInv.vehicleRules = () => {
         // price validation - take away the commas 
         body("inv_price")
             .trim()
+            .isEmpty()
             .withMessage("Please enter a valid price number."), // on error this message is sent
         
         body("inv_year")
@@ -73,11 +74,13 @@ validateInv.vehicleRules = () => {
             .withMessage("Please provide a valid year."), // on error this message is sent.
         
         body("inv_miles")
-            .trim()  
+            .trim()
+            .isEmpty()  
             .withMessage("Please enter the miles for the vehicle."), // on error this message is sent.         
         
         body("inv_color")
             .trim()
+            .isEmpty()
             .withMessage("Please enter a valid color."), // on error this message is sent.
     ]
 }
