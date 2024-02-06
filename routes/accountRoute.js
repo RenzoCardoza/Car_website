@@ -22,9 +22,10 @@ router.post(
     "/login",
     regValidate.loginRules(),
     regValidate.checkLogData,
-    utilities.handleErrors((req, res) => {
-      res.status(200).send('login process')
-    })
-  )
+    utilities.handleErrors(accController.accountLogin)
+)
+
+// Route for the default view. Manage account 
+router.get("/", utilities.handleErrors(accController.buildManagement))
 
 module.exports = router;

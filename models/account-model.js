@@ -15,24 +15,38 @@ async function registerAccount(account_firstname, account_lastname, account_emai
 /* **********************
  *   Check for existing email
  * ********************* */
-async function checkExistingEmail(account_email){
+// async function checkExistingEmail(account_email){
+//   try {
+//     const sql = "SELECT * FROM account WHERE account_email = $1"
+//     const email = await pool.query(sql, [account_email])
+//     return email.rowCount
+//   } catch (error) {
+//     return error.message
+//   }
+// }
+
+// async function checkCredentials(account_email, account_password){
+//   try {
+//       const sql = "SELECT * FROM account WHERE account_email = $1 AND account_password =$2"
+//       const password = await pool.query(sql, [account_email, account_password])
+//       return password.rowCount
+//   } catch (error) {
+//       return error.message
+//   }
+// }
+
+/* *****************************
+* Return account data using email address
+* ***************************** */
+async function getAccountByEmail (account_email) {
   try {
-    const sql = "SELECT * FROM account WHERE account_email = $1"
-    const email = await pool.query(sql, [account_email])
-    return email.rowCount
+    const result = await pool.query(
+      'SELECT account_id, account_firstname, account_lastname, account_email, account_type, account_password FROM account WHERE account_email = $1',
+      [account_email])
+    return result.rows[0]
   } catch (error) {
-    return error.message
+    return new Error("No matching email found")
   }
 }
 
-async function checkCredentials(account_email, account_password){
-  try {
-      const sql = "SELECT * FROM account WHERE account_email = $1 AND account_password =$2"
-      const password = await pool.query(sql, [account_email, account_password])
-      return password.rowCount
-  } catch (error) {
-      return error.message
-  }
-}
-
-module.exports = {registerAccount, checkExistingEmail, checkCredentials}
+module.exports = {registerAccount, /* checkExistingEmail, checkCredentials,*/ getAccountByEmail}
