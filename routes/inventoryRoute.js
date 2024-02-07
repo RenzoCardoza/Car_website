@@ -8,6 +8,9 @@ const validateInv = require("../utilities/inventory-validation");
 // Route to build inventory by classification view
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
 
+// Route for the classification view
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
 // Route to build the vehicle details by the inventory Id
 router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByInvId));
 
@@ -34,5 +37,8 @@ router.post(
     validateInv.checkVehicleData,
     utilities.handleErrors(invController.addNewVehicle)
 );
+
+// Route for the edit inventory
+router.get("/edit/:inventory_id", utilities.handleErrors(invController.buildModify))
 
 module.exports = router;

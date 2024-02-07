@@ -196,6 +196,31 @@ Util.checkJWTToken = (req, res, next) => {
 }
 
 /* ****************************************
+ *  Check Login
+ * ************************************ */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+}
+
+Util.buildClassificationList = async function (){
+  // create a variable to secure the elements
+  let data = await invModel.getClassifications()
+  let container = '<select id="classificationList" name="classification_id" required>'
+  container += '<option value="">--Choose a classification--</option>'
+  data.rows.forEach((row) => {
+    container += `<option value="${row.classification_id}">${row.classification_name}</option>`
+  })
+  container += '</select>'
+
+  return container
+}
+
+/* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
  * General Error Handling
