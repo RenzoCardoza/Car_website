@@ -33,7 +33,7 @@ async function getInventoryByInventoryId(inventory_id){
     )
     return data.rows
   } catch (error) {
-    console.error("getInventoryId error" + error)
+    console.error("getInventoryId " + error)
   }
 }
 

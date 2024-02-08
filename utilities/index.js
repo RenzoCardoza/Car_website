@@ -220,6 +220,20 @@ Util.buildClassificationList = async function (){
   return container
 }
 
+/* **************************************
+* Build the edit inventory view
+* ************************************ */
+Util.buildSelections = async function() {
+  //Container for the form 
+  let data = await invModel.getClassifications()
+  let container
+  data.rows.forEach((row) => {
+    container += `<option value="${row.classification_id}">${row.classification_name}</option>`
+  })
+
+  return container
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
