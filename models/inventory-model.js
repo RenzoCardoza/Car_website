@@ -99,6 +99,7 @@ async function checkExistingClassification(classification_name){
   }
 }
 
+// function to update an existing item 
 async function updateInventory(inv_id, inv_make, inv_model, inv_year, inv_description,
   inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id){
     try {
@@ -123,8 +124,21 @@ async function updateInventory(inv_id, inv_make, inv_model, inv_year, inv_descri
     }
 }
 
+// function to delete an item from the DB
+async function deleteInventory(inv_id){
+    try {
+      const sql = 'DELETE FROM inventory WHERE inv_id = $1';
+      const data = await pool.query(sql, [ inv_id ])
+      return data
+    } catch (error) {
+      console.error("model error: " + error)
+    }
+}
+
+
+
 module.exports = {getClassifications, 
   getInventoryByClassificationId, 
   getInventoryByInventoryId, 
   updateClassifications, updateInventory, addNewInventory,
-  checkExistingClassification};
+  checkExistingClassification, deleteInventory};
