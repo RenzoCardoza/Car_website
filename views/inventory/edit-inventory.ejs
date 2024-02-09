@@ -65,4 +65,7 @@
         </label>
         <input type="submit" class="submitBtn" id="vehicleBtn" value="Update Vehicle">
     </fieldset>
+    <input type="hidden" name="inv_id"
+        <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
 </form>

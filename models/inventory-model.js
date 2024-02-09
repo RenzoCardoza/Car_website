@@ -52,7 +52,8 @@ async function updateClassifications(classification_name){
   }
 }
 
-async function updateInventory(inv_make, inv_model, inv_year, inv_description,
+// Function to add new items to the inventory
+async function addNewInventory(inv_make, inv_model, inv_year, inv_description,
   inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id){
     try {
       const inv = await pool.query(
@@ -83,7 +84,7 @@ async function updateInventory(inv_make, inv_model, inv_year, inv_description,
       )
       return test.rows
     } catch (error) {
-      console.error("Update inventory " + error)
+      console.error("Add new inventory " + error)
     }
 }
 
@@ -98,8 +99,32 @@ async function checkExistingClassification(classification_name){
   }
 }
 
+async function updateInventory(inv_id, inv_make, inv_model, inv_year, inv_description,
+  inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id){
+    try {
+      const sql = 
+        "UPDATE public.inventory SET inv_make = $1, inv_model = $2, inv_description = $3, inv_image = $4, inv_thumbnail = $5, inv_price = $6, inv_year = $7, inv_miles = $8, inv_color = $9, classification_id = $10 WHERE inv_id = $11 RETURNING *"
+      const data = await pool.query(sql, [
+        inv_make,
+        inv_model,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_year,
+        inv_miles,
+        inv_color,
+        classification_id,
+        inv_id
+      ])
+      return data.rows[0]
+    } catch (error) {
+      console.error("model error: " + error)
+    }
+}
+
 module.exports = {getClassifications, 
   getInventoryByClassificationId, 
   getInventoryByInventoryId, 
-  updateClassifications, updateInventory,
+  updateClassifications, updateInventory, addNewInventory,
   checkExistingClassification};
