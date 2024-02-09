@@ -285,3 +285,52 @@ form fieldset span{
 .submitBtn#vehicleBtn{
   margin-top: 1.5em;
 }
+#management-paragraph, #inventoryDisplay{
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.06em;
+}
+#classificationList{
+  margin-top: 1.5em;
+  padding: .55em;
+}
+#inventoryDisplay{
+  padding: 1em;
+  margin-top: .8em;
+}
+#inventoryDisplay thead tr th,
+#inventoryDisplay thead tr td{
+  background-color: #26408B;
+  color: #A6CFD5;
+  padding: .65em;
+}
+#inventoryDisplay tbody tr td{
+  padding: .65em;
+  border: 1px solid #26408B;
+  background-color: #E2F3EC;
+  color: #26408B;
+}
+#edit-form, #edit-form fieldset{
+  width: 100%;
+  max-width: 100%;
+}
+#edit-form .vehicle-titles{
+  margin-top: .35em;
+  margin-bottom: .35em;
+}
+#edit-form textarea{
+  width: 100%;
+}
+#edit-form input{
+  width: 100%;
+  padding: .4em;
+  text-align: center;
+}
+#edit-form #classificationList{
+  margin-top: 0;
+  padding: .4em;
+  width: 100%;
+  text-align: center;
+}
+#edit-form .submitBtn{
+  width: 40%;
+}

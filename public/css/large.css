@@ -90,4 +90,24 @@
     .vehicle-titles{
         text-align: left;
     } 
+    #management-paragraph{
+        padding: .8em;
+    }
+    #inventoryDisplay{
+        width: 100%;
+    }
+    #classificationList{
+        margin-top: .30em;
+        margin-left: 1em;
+    }
+    #edit-form{
+        margin: 0 auto;
+        width: 75%;
+    }
+    #edit-form #classificationList{
+        margin-left: 0;
+    }
+    #edit-form .submitBtn{
+        width: 35%;
+    }
 }
