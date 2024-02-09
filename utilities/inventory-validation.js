@@ -59,6 +59,7 @@ validateInv.vehicleRules = () => {
 
         // a valid description is required 
         body("inv_description")
+            .trim()    
             .isEmpty()
             .withMessage("A description is required."), // on error this message is sent
             
@@ -81,6 +82,50 @@ validateInv.vehicleRules = () => {
         body("inv_color")
             .trim()
             .isEmpty()
+            .withMessage("Please enter a valid color."), // on error this message is sent.
+    ]
+}
+
+// rules for the vehicle check on the vehicle inventory add page
+validateInv.updateRules = () => {
+    return [
+        // inv_make must be a 3 characters minimum
+        body("inv_make")
+            .trim()
+            .isLength({ min: 3 })
+            .withMessage("Please provide an inventory make."), // on error this message is sent.
+
+        // the model must be at least 3 characters in lenght
+        body("inv_model")
+            .trim()
+            .isLength({ min: 3 })
+            .withMessage("Please provide a valid model."), // on error this message is sent.
+
+        // a valid description is required 
+        body("inv_description")
+            .trim()    
+            .isLength({ max: 255})
+            .withMessage("A description is required."), // on error this message is sent
+            
+        // price validation - take away the commas 
+        body("inv_price")
+            .trim()
+            .isNumeric()
+            .withMessage("Please enter a valid price number."), // on error this message is sent
+        
+        body("inv_year")
+            .trim()
+            .isLength({ min: 4 })
+            .withMessage("Please provide a valid year."), // on error this message is sent.
+        
+        body("inv_miles")
+            .trim()
+            .isNumeric()  
+            .withMessage("Please enter the miles for the vehicle."), // on error this message is sent.         
+        
+        body("inv_color")
+            .trim()
+            .isLength({max: 15})
             .withMessage("Please enter a valid color."), // on error this message is sent.
     ]
 }
@@ -122,12 +167,12 @@ validateInv.checkUpdateData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
       let nav = await utilities.getNav()
-      const newVehicle = await utilities.buildNewVehicleView()
+      const classificationSelect = await utilities.buildClassificationList(classification_id)
       res.render("inventory/edit-inventory", {
         errors,
         title: `Edit ${inv_make} ${inv_model}`,
         nav,
-        newVehicle,
+        classificationSelect: classificationSelect,
         classification_id,
         inv_make,
         inv_model,

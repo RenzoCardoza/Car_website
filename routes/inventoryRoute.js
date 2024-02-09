@@ -44,7 +44,7 @@ router.get("/edit/:inventoryId", utilities.handleErrors(invController.buildEditI
 // Route for the inventory update
 router.post(
     "/update/", 
-    validateInv.vehicleRules(),
+    validateInv.updateRules(),
     validateInv.checkUpdateData,
     utilities.handleErrors(invController.updateInventory))
 

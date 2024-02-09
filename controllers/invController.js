@@ -122,7 +122,7 @@ invCont.addNewVehicle = async function(req, res, next){
     inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body
   const managementView = await utilities.buildManagementView()
   const newVehicle = await utilities.buildNewVehicleView()
-  const addVehicleResult = await invModel.addNewInventoryInventory(
+  const addVehicleResult = await invModel.addNewInventory(
     inv_make, inv_model, inv_year, inv_description, inv_image,
     inv_thumbnail, inv_price, inv_miles, inv_color, classification_id
   )
@@ -205,11 +205,11 @@ invCont.updateInventory = async function (req, res, next) {
     inv_miles, inv_color,
     classification_id, } = req.body
   const updateResult = await invModel.updateInventory(
-    inv_id, inv_make,
-    inv_model, inv_description,
-    inv_image, inv_thumbnail,
-    inv_price, inv_year,
-    inv_miles, inv_color,
+    inv_id, inv_make, 
+    inv_model, inv_year, 
+    inv_description, inv_image, 
+    inv_thumbnail, inv_price, 
+    inv_miles, inv_color, 
     classification_id
   )
 

@@ -100,14 +100,14 @@
         margin-top: .30em;
         margin-left: 1em;
     }
-    #edit-form{
+    .edit-form{
         margin: 0 auto;
         width: 75%;
     }
-    #edit-form #classificationList{
+    .edit-form #classificationList{
         margin-left: 0;
     }
-    #edit-form .submitBtn{
+    .edit-form .submitBtn{
         width: 35%;
     }
 }

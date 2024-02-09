@@ -309,28 +309,28 @@ form fieldset span{
   background-color: #E2F3EC;
   color: #26408B;
 }
-#edit-form, #edit-form fieldset{
+.edit-form, .edit-form fieldset{
   width: 100%;
   max-width: 100%;
 }
-#edit-form .vehicle-titles{
+.edit-form .vehicle-titles{
   margin-top: .35em;
   margin-bottom: .35em;
 }
-#edit-form textarea{
+.edit-form textarea{
   width: 100%;
 }
-#edit-form input{
+.edit-form input{
   width: 100%;
   padding: .4em;
   text-align: center;
 }
-#edit-form #classificationList{
+.edit-form #classificationList{
   margin-top: 0;
   padding: .4em;
   width: 100%;
   text-align: center;
 }
-#edit-form .submitBtn{
+.edit-form .submitBtn{
   width: 40%;
 }

@@ -57,18 +57,6 @@ validate.loginRules = () => {
       .isEmail()
       .normalizeEmail() // refer to validator.js docs
       .withMessage("A valid email is required."),
-      // .custom(async (account_email, {req})  => {
-      //     const account_password = req.body.account_password
-      //     //Check Email is valid
-      //     // const emailExists = await accountModel.checkExistingEmail(account_email)
-      //     // if (!emailExists){
-      //     //     throw new Error("Email is not registered. Please register or try a different email")
-      //     // }
-      //     // const isValidCredentials = await accountModel.checkCredentials(account_email, account_password)
-      //     // if(!isValidCredentials){
-      //     //     throw new Error("Invalid email or password")
-      //     // }
-      // }),
   
       // password is required and must be strong password
       body("account_password")

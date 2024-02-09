@@ -15,28 +15,24 @@
    </ul>
   <% } %>
 
-<form id="edit-form" action="/inv/update" method="post">
+<form class="edit-form" id="updateForm" action="/inv/update" method="post">
     <h3>All fields are required</h3>
     <fieldset id="modifyInventory">
         <label>
         <span class="vehicle-titles">Classification</span>
         <%- classificationSelect %>
-        <!-- <select id="classification-selection" name="classification_id" required> 
-            <option value="<%#- classification_id %>"></option>
-            <%#- selections %>
-        </select> -->
         </label>
         <label>
             <span class="vehicle-titles">Make</span>
-            <input type="text" id="invMake" name="inv_make" required pattern="^.{3,}$" placeholder="3 characters minimum" value="<%- inv_make %>">
+            <input type="text" id="invMake" name="inv_make" required pattern="^.{3,}$" placeholder="3 characters minimum" value="<%= locals.inv_make %>">
         </label>
         <label>
             <span class="vehicle-titles">Model</span>
-            <input type="text" id="invModel" name="inv_model" required pattern="^.{3,}$" placeholder="3 characters minimum" value="<%- inv_model %>">
+            <input type="text" id="invModel" name="inv_model" required pattern="^.{3,}$" placeholder="3 characters minimum" value="<%= locals.inv_model %>">
         </label>
         <label>
             <span class="vehicle-titles">Description</span>
-            <textarea name="inv_description" rows="8" cols="25" placeholder="Provide a small description of the vehicle" required><%- inv_description %>
+            <textarea name="inv_description" rows="8" cols="25" placeholder="Provide a small description of the vehicle" required><%= locals.inv_description %>
             </textarea>
         </label>
         <label>
@@ -49,23 +45,24 @@
         </label>
         <label>
             <span class="vehicle-titles">Price</span>
-            <input type="text" id="invPrice" name="inv_price" required pattern="^\\d+(,\\d+)?$" placeholder="Integers or decimal using comma" value="<%- inv_price %>">
+            <input type="text" id="invPrice" name="inv_price" required placeholder="Integers or decimal using comma" value="<%= locals.inv_price %>">
         </label>
         <label>
             <span class="vehicle-titles">Year</span>
-            <input type="text" id="invYear" name="inv_year" required pattern="^(202[0-4]|20[0-1][0-9]|200[0-9]|19[0-9]{2}|[1-9][0-9]{0,2})$" placeholder="4-digit year" value="<%- inv_year %>">
+            <input type="text" id="invYear" name="inv_year" required pattern="^(202[0-4]|20[0-1][0-9]|200[0-9]|19[0-9]{2}|[1-9][0-9]{0,2})$" placeholder="4-digit year" value="<%= locals.inv_year %>">
         </label>
         <label>
             <span class="vehicle-titles">Miles</span>
-            <input type="text" id="invMiles" name="inv_miles" required pattern="^[1-9]\\d*(,\\d+)?$" placeholder="only digits" value="<%- inv_miles %>">
+            <input type="text" id="invMiles" name="inv_miles" required placeholder="only digits" value="<%= locals.inv_miles %>">
         </label>
         <label>
             <span class="vehicle-titles">Color</span>
-            <input type="text" id="invColor" name="inv_color" required placeholder="Color of the vehicle" value="<%- inv_color %>">
+            <input type="text" id="invColor" name="inv_color" required placeholder="Color of the vehicle" value="<%= locals.inv_color %>">
         </label>
-        <input type="submit" class="submitBtn" id="vehicleBtn" value="Update Vehicle">
+        <input type="submit" class="submitBtn" id="vehicleBtn" value="Update Vehicle" disabled>
     </fieldset>
     <input type="hidden" name="inv_id"
         <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
     <% } %>>
 </form>
+<script src="../../js/inv-update.js"></script>
