@@ -26,6 +26,9 @@ router.post(
 )
 
 // Route for the default view. Manage account 
-router.get("/", utilities.checkLogin, utilities.handleErrors(accController.buildManagement))
+router.get(
+    "/", 
+    utilities.checkLogin, 
+    utilities.handleErrors(accController.buildManagement))
 
 module.exports = router;

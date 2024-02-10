@@ -207,6 +207,18 @@ Util.checkLogin = (req, res, next) => {
   }
 }
 
+/* ****************************************
+ *  Check account type
+ * ************************************ */
+Util.checkAccountType = (req, res, next) => {
+  if (res.locals.accountData.account_type == "Admin" || res.locals.accountData.account_type == "Employee") {
+    next()
+  } else {
+    req.flash("notice", "Please log in with an authorized account.")
+    return res.redirect("/account/login")
+  }
+}
+
 Util.buildClassificationList = async function (){
   // create a variable to secure the elements
   let data = await invModel.getClassifications()

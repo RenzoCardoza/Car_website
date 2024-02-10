@@ -15,13 +15,25 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByInvId));
 
 // Route to get the management view
-router.get("/", utilities.handleErrors(invController.buildManagement));
+router.get(
+    "/", 
+    utilities.checkLogin,
+    utilities.checkAccountType,
+    utilities.handleErrors(invController.buildManagement));
 
 // Route to add a new classification
-router.get("/add-classification", utilities.handleErrors(invController.buildNewClassification));
+router.get(
+    "/add-classification", 
+    utilities.checkLogin,
+    utilities.checkAccountType,
+    utilities.handleErrors(invController.buildNewClassification));
 
 // Route to add a vehicle
-router.get("/add-vehicle", utilities.handleErrors(invController.buildNewVehicle));
+router.get(
+    "/add-vehicle", 
+    utilities.checkLogin,
+    utilities.checkAccountType,
+    utilities.handleErrors(invController.buildNewVehicle));
 
 // process the add new classification
 router.post(

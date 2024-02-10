@@ -25,16 +25,6 @@ async function checkExistingEmail(account_email){
   }
 }
 
-// async function checkCredentials(account_email, account_password){
-//   try {
-//       const sql = "SELECT * FROM account WHERE account_email = $1 AND account_password =$2"
-//       const password = await pool.query(sql, [account_email, account_password])
-//       return password.rowCount
-//   } catch (error) {
-//       return error.message
-//   }
-// }
-
 /* *****************************
 * Return account data using email address
 * ***************************** */
@@ -49,4 +39,4 @@ async function getAccountByEmail (account_email) {
   }
 }
 
-module.exports = {registerAccount, checkExistingEmail,/* checkCredentials,*/ getAccountByEmail}
+module.exports = {registerAccount, checkExistingEmail, getAccountByEmail}
