@@ -140,7 +140,7 @@ async function accInfoUpdate(req, res){
     account_lastname, account_email, account_id)
   
   if (updateResult) {
-    const accountData = accModel.getAccountById(account_id)
+    const accountData = await accModel.getAccountById(account_id)
     req.flash("notice", `Informations were successfully updated.`)
     req.flash("notice", `${accountData.account_firstname} ${accountData.account_lastname}, ${accountData.account_email}`)
     res.redirect("/account/")
@@ -193,7 +193,14 @@ async function accPasswordUpdate(req, res){
   }
 }
 
+//Process the logout for the page
+async function logoutAction(req, res, next){
+  res.clearCookie("jwt")
+  req.flash("notice", "Logged Out Successfully")
+  res.redirect("/")
+}
+
 module.exports = { buildLogin, buildRegister, 
   registerAccount, buildUpdateAccount, 
   accountLogin, buildManagement, accInfoUpdate, 
-  accPasswordUpdate }
+  accPasswordUpdate, logoutAction }

@@ -107,11 +107,11 @@
     .edit-form #classificationList{
         margin-left: 0;
     }
-    .edit-form .submitBtn{
+    .edit-form .submitBtn, #modifyInventory .submitBtn{
         width: 35%;
     }
-    #passwordUpdateForm fieldset, #accUpdateForm fieldset{
+    #passwordUpdateForm fieldset, #accUpdateForm fieldset, #modifyInventory{
         max-width: 75%;
         margin: 0 auto;
-      }
+    }
 }

@@ -9,7 +9,7 @@
         <% if (locals.loggedin) { %>
             <a class="manage-link" title="Manage account" href="/account/">Welcome <%= locals.accountData.account_firstname %></a>
             <span>|</span>
-            <a class="manage-link" title="Log out from your account" href="#">Logout</a>
+            <a class="manage-link" title="Log out from your account" href="/account/logout">Logout</a>
         <% } %>                     
     </div>
 </header>
