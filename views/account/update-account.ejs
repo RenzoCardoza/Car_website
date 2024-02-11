@@ -1,0 +1,62 @@
+<!-- title view -->
+<% if (title){ %>
+    <h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<!-- if any message sent will be here -->
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+<% } %>
+
+<!-- Form for account update-->
+<form id="accUpdateForm" action="/account/updateinfos" method="post">
+    <h2>All fields are required</h2>
+    <fieldset class="email-pass">
+        <label class="update-fields">
+            First Name
+            <input type="text" name="account_firstname" required value="<%= locals.accountData.account_firstname %>">
+        </label>
+        <label class="update-fields">
+            Last name
+            <input type="text" name="account_lastname" required value="<%= locals.accountData.account_lastname %>">
+        </label>
+        <label class="update-fields">
+            Email address
+            <input type="email" name="account_email" required value="<%= locals.accountData.account_email %>">
+        </label>
+        <input type="submit" class="submitBtn" value="Update Informations">
+    </fieldset>
+    <input type="hidden" name="account_id"
+        <% if(locals.accountData.account_id) { %> value="<%= locals.accountData.account_id %>"
+    <% } %>>
+</form>
+
+<!-- Form for account password update-->
+<form id="passwordUpdateForm" action="/account/updatepassword" method="post">
+    <h2>All fields are required</h2>
+    <fieldset class="email-pass">
+        <div id="pass-require">
+            <p id="password-alert">Warning: This will change the current password</p>
+            <p>At least 12 characters:<br> 
+            1 must a number<br>
+            1 must be lowercase letter<br>
+            1 must be capital letter<br>
+            1 must be a non-alphanumeric character</p>
+        </div>
+        <label class="update-fields">
+            New Password
+            <input type="password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
+        </label>
+        <input type="submit" class="submitBtn" value="Update Password">
+    </fieldset>
+    <input type="hidden" name="account_id"
+        <% if(locals.accountData.account_id) { %> value="<%= locals.accountData.account_id %>"
+    <% } %>>
+</form>

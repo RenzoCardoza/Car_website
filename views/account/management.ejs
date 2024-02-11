@@ -15,5 +15,24 @@
   <% } %>
 
 <div id="acc-title">
-    <h3>You're logged in</h3>
+    <% if (locals.accountData.account_type == "Client") { %>
+        <h2>Welcome Basic</h2>
+        <h3>You're logged in</h3>
+        <%# accountLink %>
+        <a id="update-link" href="/account/update/<%= locals.accountData.account_id %>"><p>Update account information</p></a>
+    <% } %>
+    <% if (locals.accountData.account_type == "Employee") { %>
+        <h2>Welcome Happy</h2>
+        <%# accountLink %>
+        <a id="update-link" href="/account/update/<%= locals.accountData.account_id %>"><p>Update account information</p></a>
+        <h3 class="invManageTitle">Inventory Management</h3>
+        <a href="/inv/"><p id="manageInventoryLink">Manage Inventory</p></a>
+    <% } %>
+    <% if (locals.accountData.account_type == "Admin") { %>
+        <h2>Welcome Manager</h2>
+        <%# accountLink %>
+        <a id="update-link" href="/account/update/<%= locals.accountData.account_id %>"><p>Update account information</p></a>
+        <h3 class="invManageTitle">Inventory Management</h3>
+        <a href="/inv/"><p id="manageInventoryLink">Manage Inventory</p></a>
+    <% } %>
 </div>

@@ -29,6 +29,30 @@ router.post(
 router.get(
     "/", 
     utilities.checkLogin, 
-    utilities.handleErrors(accController.buildManagement))
+    utilities.handleErrors(accController.buildManagement)
+)
+
+// Route for the update account info
+router.get(
+    "/update/:accountId",
+    utilities.checkLogin,
+    utilities.handleErrors(accController.buildUpdateAccount)
+)
+
+// Route for the update attempt
+router.post(
+    "/updateinfos",
+    regValidate.infoUpdateRules(),
+    regValidate.checkInfoUpdate,
+    utilities.handleErrors(accController.accInfoUpdate)
+)
+
+// Route for the update password
+router.post(
+    "/updatepassword",
+    regValidate.passwordUpdateRules(),
+    regValidate.checkPasswordUpdate,
+    utilities.handleErrors(accController.accPasswordUpdate)
+)
 
 module.exports = router;

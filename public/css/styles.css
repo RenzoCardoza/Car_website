@@ -267,7 +267,7 @@ form fieldset span{
   margin-bottom: .8em;
 }
 /* New vehicle views */
-.vehicle-titles{
+.vehicle-titles, .update-fields{
   color: #A6CFD5;
   margin-top: 0;
 }
@@ -333,4 +333,31 @@ form fieldset span{
 }
 .edit-form .submitBtn{
   width: 40%;
+}
+#passwordUpdateForm fieldset, #accUpdateForm fieldset{
+  max-width: 100%;
+}
+.update-fields{
+  text-align: center;
+}
+.update-fields input{
+  display: block;
+  width: 100%;
+  margin-top: .5em;
+  margin-bottom: .5em;
+  padding: .4em;
+}
+#pass-require{
+  color: #A6CFD5;
+}
+#update-link, #manageInventoryLink{
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.06em;
+}
+#acc-title{
+  margin-top: 3em;
+  margin-left: 1em;
+}
+.invManageTitle{
+  margin-top: 3em;
 }

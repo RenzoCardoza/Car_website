@@ -110,4 +110,8 @@
     .edit-form .submitBtn{
         width: 35%;
     }
+    #passwordUpdateForm fieldset, #accUpdateForm fieldset{
+        max-width: 75%;
+        margin: 0 auto;
+      }
 }

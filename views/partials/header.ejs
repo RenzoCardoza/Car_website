@@ -7,7 +7,8 @@
             <a id="log-in-link" title="Click to log in" href="/account/login">My Account</a>
         <% } %>
         <% if (locals.loggedin) { %>
-            <a class="manage-link" title="Manage account" href="/account/">Welcome Basic</a>
+            <a class="manage-link" title="Manage account" href="/account/">Welcome <%= locals.accountData.account_firstname %></a>
+            <span>|</span>
             <a class="manage-link" title="Log out from your account" href="#">Logout</a>
         <% } %>                     
     </div>
