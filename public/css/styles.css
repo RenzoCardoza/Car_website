@@ -350,7 +350,9 @@ form fieldset span{
 #pass-require{
   color: #A6CFD5;
 }
-#update-link, #manageInventoryLink{
+#update-link, #manageInventoryLink,
+.loginNotice, .reviews, 
+#no-revs-msg {
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 0.06em;
 }
@@ -370,4 +372,54 @@ form fieldset span{
   width: 100%;
   margin-top: .5em;
   margin-bottom: .5em;
+}
+.reviewHeading{
+  margin-top: 2em;
+}
+.review-box{
+  padding: 1em;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  border: 1px solid #26408B;
+  border-radius: 5px;
+  margin-bottom: 3em;
+}
+.reviews{
+  width: 100%;
+}
+.reviews tbody tr th,
+.revies tbody tr td{
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.reviews tbody tr th.author{
+  text-align: left;
+}
+.reviews tbody tr th.rev-date{
+  text-align: right;
+}
+.loginNotice{
+  margin-top: 2.3em;
+  font-weight: bold;
+  text-align: center;
+}
+.review-text{
+  border-bottom: 1px solid #26408B;
+}
+#no-revs-msg{
+  margin-bottom: 5em;
+}
+#review-form{
+  background-color: #26408B;
+  padding: 1em;
+  border-radius: 10px;
+}
+#review-form h3{
+  color: #A6CFD5;
+  margin-left: .5em;
+}
+.review-title{
+  margin-bottom: .5em;
+}
+#review-name{
+  text-align: left;
 }

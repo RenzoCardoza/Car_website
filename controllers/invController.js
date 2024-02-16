@@ -1,5 +1,6 @@
 const { render } = require("ejs")
 const invModel = require("../models/inventory-model")
+const revModel = require("../models/review-model")
 const utilities = require("../utilities")
 
 const invCont = {}
@@ -27,13 +28,21 @@ invCont.buildByClassificationId = async function (req, res, next) {
 invCont.buildByInvId = async function(req, res, next){
   const inv_id = req.params.inventoryId
   const data = await invModel.getInventoryByInventoryId(inv_id)
+  const reviews = await revModel.getReviewsbyVehicleId(inv_id)
   const vehicleView = await utilities.buildVehicleDetails(data)
+  let reviewView
+  if (!reviews.length == 0){
+    reviewView = await utilities.buildReviews(reviews) // build the utilities
+  } else {
+    reviewView = `<p id="no-revs-msg">Currently, there are no reviews for this vehicle</p>`
+  }
   let nav = await utilities.getNav()
   const vehicleName = `${data[0].inv_year} ${data[0].inv_make} ${data[0].inv_model}`
   res.render("./inventory/vehicle", {
     title: vehicleName,
     nav,
     vehicleView,
+    reviewView,
     errors: null,
   })
 }

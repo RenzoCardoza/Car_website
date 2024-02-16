@@ -246,6 +246,30 @@ Util.buildSelections = async function() {
   return container
 }
 
+/* **************************************
+* Build the reviews elements 
+* ************************************ */
+Util.buildReviews = async function(reviews) {
+  //Container for the reviews
+  let container = '<div class="review-box">'
+  container += '<table class="reviews"><tbody>'
+  if (reviews) {
+    reviews.forEach((row) => {
+      container += '<tr>'
+      container += `<th class="author"><span class="review-author">${row.account_firstname} ${row.account_lastname}</span></th>` 
+      container += `<th class="rev-date"><span class="review-date">${row.date}</span></th>`
+      container += `</tr>`
+      container += '<tr>'
+      container += `<td colspan="2"><p class="review-text">${row.review_text}</p></td>`
+      container += '</tr>'
+    })
+  }
+  container += '<tobdy></table>'
+  container += '</div>'
+
+  return container
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 

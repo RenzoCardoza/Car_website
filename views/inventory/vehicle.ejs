@@ -7,3 +7,37 @@
 
 <!-- Vehicle view -->
 <%- vehicleView %>
+
+<!-- review view -->
+<h2 class="reviewHeading">Customer Reviews</h2>
+<%- reviewView %>
+
+<!-- post a review -->
+<% if (!locals.loggedin) { %>
+  <p class="loginNotice">To post a review you must <a id="logIn" title="Click to log in" href="/account/login">Log in</a></p>
+<% } %>
+<% if (locals.loggedin) { %>
+  <% let initial = locals.accountData.account_firstname[0] %> 
+  <h2 class="reviewHeading">Post your review</h2>
+  <form class="edit-form" id="review-form" action="/inv/postReview" method="post">
+    <h3>All fields are required</h3>
+    <fieldset id="postReview">
+        <label>
+          <span class="review-title" id="review-name"><%= initial %>. <%= locals.accountData.account_lastname %></span>
+        </label>
+        <label>
+          <span class="review-title">Post a review for this vehicle</span>
+          <textarea name="review_text" rows="8" cols="25" placeholder="Provide a review for this vehicle" required>
+          </textarea>
+        </label>
+        <input type="submit" class="submitBtn" id="reviewBtn" value="Post review">
+    </fieldset>
+    <input type="hidden" name="inv_id"
+        <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+    <input type="hidden" name="account_id"
+        <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+    <% } %>>
+  </form>
+<% } %>
+  
