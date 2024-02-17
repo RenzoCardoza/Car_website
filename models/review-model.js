@@ -48,4 +48,16 @@ async function getReviewTextByReviewId(review_id){
   }
 }
 
-module.exports = { getReviewsbyVehicleId, getAccountIdByReviewId, getReviewTextByReviewId }
+/* ***************************
+ *  Update the review to the database
+ * ************************** */
+async function updateReview(review_text, review_id) {
+  //write the code here
+}
+
+async function deleteReview(review_id) {
+  //code here
+}
+
+module.exports = { getReviewsbyVehicleId, getAccountIdByReviewId, getReviewTextByReviewId,
+updateReview, deleteReview }
