@@ -80,5 +80,17 @@ async function deleteReview(review_id) {
   }
 }
 
+/* ***************************
+ *  Add a new review to the database
+ * ************************** */
+async function addNewReview(review_text, inv_id, account_id){
+  try {
+    const sql = "INSERT INTO public.review (review_text, inv_id, account_id) VALUES ('$1', '$2', '$3')"
+    const data = await pool.query(sql, [review_text, inv_id, account_id])
+  } catch (error) {
+    console.error("Add New review " + error)
+  }
+}
+
 module.exports = { getReviewsbyVehicleId, getAccountIdByReviewId, getReviewTextByReviewId,
-updateReview, deleteReview }
+updateReview, deleteReview, addNewReview }

@@ -4,6 +4,7 @@ const router = new express.Router()
 const invController = require("../controllers/invController")
 const utilities = require("../utilities/");
 const validateInv = require("../utilities/inventory-validation");
+const validateRev = require("../utilities/review-validation");
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
@@ -20,7 +21,6 @@ router.get(
     utilities.checkLogin,
     utilities.checkReviewIdToAccount,
     utilities.handleErrors(invController.buildEditReview));
-
 
 // Route to get the delete review view
 router.get(
@@ -82,5 +82,13 @@ router.get("/delete/:inventoryId", utilities.handleErrors(invController.buildDel
 
 //Route for the post method to delete de item
 router.post("/delete/", utilities.handleErrors(invController.deleteInventory));
+
+// Route for the post method of posting a new review
+router.post(
+    "/postReview/",
+    validateRev.reviewRules(),
+    validateRev.checkReviewText,
+    utilities.handleErrors(invController.postReview)
+);
 
 module.exports = router;

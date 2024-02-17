@@ -325,4 +325,55 @@ invCont.buildDeleteReview = async function (req, res, next) {
   })
 }
 
+// Function to post a new review 
+invCont.postReview = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  const { review_text, inv_id, account_id } = req.body
+  const data = await invModel.getInventoryByInventoryId(inv_id)
+  const vehicleView = await utilities.buildVehicleDetails(data)
+  const vehicleName = `${data[0].inv_year} ${data[0].inv_make} ${data[0].inv_model}`
+
+  // add the review to the database
+  const addReviewResult = await revModel.addNewReview(review_text, inv_id, account_id)
+  if (addReviewResult) {
+    const reviews = await revModel.getReviewsbyVehicleId(inv_id)
+    let reviewView
+    if (!reviews.length == 0){
+      reviewView = await utilities.buildReviews(reviews)
+    } else {
+      reviewView = `<p id="no-revs-msg">Currently, there are no reviews for this vehicle</p>`
+    }
+    req.flash(
+    "notice",
+    `Congratulations, the review was registered correctly.`
+    )
+    res.status(201).render("inventory/vehicle", {
+      title: vehicleName,
+      nav,
+      vehicleView,
+      reviewView,
+      errors: null,
+    })
+  } else {
+    const reviews = await revModel.getReviewsbyVehicleId(inv_id)
+    let reviewView
+    if (!reviews.length == 0){
+      reviewView = await utilities.buildReviews(reviews)
+    } else {
+      reviewView = `<p id="no-revs-msg">Currently, there are no reviews for this vehicle</p>`
+    }
+    req.flash("notice", "Sorry, something went wrong")
+    res.status(501).render("inventory/vehicle", {
+      title: vehicleName,
+      nav,
+      errors: null,
+      vehicleView,
+      reviewView,
+      review_text,
+      inv_id,
+      account_id,
+    })
+  }
+}
+
 module.exports = invCont
