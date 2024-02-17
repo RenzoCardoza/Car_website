@@ -312,4 +312,17 @@ invCont.buildEditReview = async function (req, res, next) {
   })
 }
 
+// Function to build the delete reviews view
+invCont.buildDeleteReview = async function (req, res, next) {
+  const review_id = req.params.reviewId
+  const review_text = await revModel.getReviewTextByReviewId(review_id)
+  let nav = await utilities.getNav()
+  res.render("./inventory/delete-review", {
+    title: "Delete Review",
+    nav,
+    errors: null,
+    review_text,
+  })
+}
+
 module.exports = invCont

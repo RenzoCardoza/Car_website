@@ -21,6 +21,15 @@ router.get(
     utilities.checkReviewIdToAccount,
     utilities.handleErrors(invController.buildEditReview));
 
+
+// Route to get the delete review view
+router.get(
+    "/deleteReview/:reviewId",
+    utilities.checkLogin,
+    utilities.checkReviewIdToAccount,
+    utilities.handleErrors(invController.buildDeleteReview)
+);
+
 // Route to get the management view
 router.get(
     "/", 
@@ -49,6 +58,7 @@ router.post(
     validateInv.checkClassData,
     utilities.handleErrors(invController.addNewClassification)
 );
+
 // process the add new inventory item
 router.post(
     "/add-vehicle", 
@@ -58,19 +68,19 @@ router.post(
 );
 
 // Route for the edit inventory
-router.get("/edit/:inventoryId", utilities.handleErrors(invController.buildEditInventory))
+router.get("/edit/:inventoryId", utilities.handleErrors(invController.buildEditInventory));
 
 // Route for the inventory update
 router.post(
     "/update/", 
     validateInv.updateRules(),
     validateInv.checkUpdateData,
-    utilities.handleErrors(invController.updateInventory))
+    utilities.handleErrors(invController.updateInventory));
 
 //Route for the inventory delete
-router.get("/delete/:inventoryId", utilities.handleErrors(invController.buildDeleteInventory))
+router.get("/delete/:inventoryId", utilities.handleErrors(invController.buildDeleteInventory));
 
 //Route for the post method to delete de item
-router.post("/delete/", utilities.handleErrors(invController.deleteInventory))
+router.post("/delete/", utilities.handleErrors(invController.deleteInventory));
 
 module.exports = router;
