@@ -325,7 +325,7 @@ invCont.buildDeleteReview = async function (req, res, next) {
   })
 }
 
-// Function to post a new review 
+// Function to post a new review ---- TEST THIS FIRST 
 invCont.postReview = async function (req, res, next) {
   let nav = await utilities.getNav()
   const { review_text, inv_id, account_id } = req.body
@@ -372,6 +372,51 @@ invCont.postReview = async function (req, res, next) {
       review_text,
       inv_id,
       account_id,
+    })
+  }
+}
+
+/* ***************************
+ *  Update Review on the database
+ * ************************** */
+invCont.editReview = async function (req, res, next) {
+  const review_id = req.params.reviewId
+  let nav = await utilities.getNav()
+  const { review_text, inv_id } = req.body
+  const updateResult = await revModel.updateReview(review_text, review_id)
+
+  if (updateResult) {
+    req.flash("notice", `The review was successfully updated.`)
+    res.redirect(`/inv/detail/${inv_id}`)
+  } else {
+    req.flash("notice", "Sorry, the update failed.")
+    res.status(501).render("inventory/edit-review", {
+    title: "Update your review",
+    nav,
+    errors: null,
+    review_text,
+    })
+  }
+}
+
+/* ***************************
+ *  Delete Review on the database
+ * ************************** */
+invCont.deleteReview = async function (req, res, next) {
+  const review_id = req.params.reviewId
+  let nav = await utilities.getNav()
+  const deleteResult = await revModel.deleteReview(review_id)
+
+  if (deleteResult) {
+    req.flash("notice", `The deletion was successfully.`)
+    res.redirect(`/inv/detail/${inv_id}`)
+  } else {
+    req.flash("notice", "Sorry, the deletion failed.")
+    res.status(501).render("inventory/delete-review", {
+    title: "Delete your review",
+    nav,
+    errors: null,
+    review_text,
     })
   }
 }

@@ -91,4 +91,15 @@ router.post(
     utilities.handleErrors(invController.postReview)
 );
 
+// Route for the post method of editing a review 
+router.post(
+    "/editReview/",
+    validateRev.reviewRules(),
+    validateRev.checkUpdateReviewText,
+    utilities.handleErrors(invController.editReview)
+);
+
+// Route for the post method of deleting a review 
+router.post("/deleteReview/", utilities.handleErrors(invController.deleteReview));
+
 module.exports = router;

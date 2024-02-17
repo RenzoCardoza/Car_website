@@ -54,11 +54,9 @@ async function getReviewTextByReviewId(review_id){
 async function updateReview(review_text, review_id) {
   try {
     const sql = 
-      "UPDATE public.review SET review_text = $1, inv_id = $2, account_id = $3 WHERE review_id = $4 RETURNING *"
+      "UPDATE public.review SET review_text = $1 WHERE review_id = $2 RETURNING *"
     const data = await pool.query(sql, [
       review_text,
-      inv_id,
-      account_id,
       review_id
     ])
     return data.rows[0]
@@ -87,6 +85,9 @@ async function addNewReview(review_text, inv_id, account_id){
   try {
     const sql = "INSERT INTO public.review (review_text, inv_id, account_id) VALUES ('$1', '$2', '$3')"
     const data = await pool.query(sql, [review_text, inv_id, account_id])
+    //return the review added as a check mark
+    const test = await pool.query("SELECT * FROM public.review WHERE review_text='$1'", [review_text])
+    return test.rows
   } catch (error) {
     console.error("Add New review " + error)
   }
