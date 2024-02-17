@@ -34,6 +34,7 @@
         <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
     <% } %>>
     <input type="hidden" name="account_id"
-        <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+        <% if(locals.accountData.account_id) { %> value="<%= locals.accountData.account_id %>"
     <% } %>>
+    <input type="hidden" name="review_id" value="<%= review_id %>">
 </form>

@@ -320,13 +320,17 @@ invCont.buildEditReview = async function (req, res, next) {
 // Function to build the delete reviews view
 invCont.buildDeleteReview = async function (req, res, next) {
   const review_id = req.params.reviewId
-  const review_text = await revModel.getReviewTextByReviewId(review_id)
+  const review = await revModel.getReviewTextByReviewId(review_id)
+  const review_text = review.review_text 
+  const inv_id = review.inv_id
   let nav = await utilities.getNav()
   res.render("./inventory/delete-review", {
     title: "Delete Review",
     nav,
     errors: null,
     review_text,
+    review_id,
+    inv_id,
   })
 }
 
@@ -387,7 +391,6 @@ invCont.postReview = async function (req, res, next) {
 invCont.editReview = async function (req, res, next) {
   let nav = await utilities.getNav()
   const { review_text, review_id, inv_id } = req.body
-  console.log(review_id, review_text, inv_id)
   const updateResult = await revModel.updateReview(review_text, review_id)
 
   if (updateResult) {
@@ -408,7 +411,7 @@ invCont.editReview = async function (req, res, next) {
  *  Delete Review on the database
  * ************************** */
 invCont.deleteReview = async function (req, res, next) {
-  const review_id = req.params.reviewId
+  const { review_id, review_text, inv_id } = req.body
   let nav = await utilities.getNav()
   const deleteResult = await revModel.deleteReview(review_id)
 
@@ -422,6 +425,7 @@ invCont.deleteReview = async function (req, res, next) {
     nav,
     errors: null,
     review_text,
+    review_id,
     })
   }
 }
