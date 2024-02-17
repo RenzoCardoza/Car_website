@@ -1,0 +1,39 @@
+<!-- Heading content -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Message Block -->
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+<!-- update a review -->
+<% let initial = locals.accountData.account_firstname[0] %> 
+<h2 class="reviewHeading">Update your review</h2>
+<form class="edit-form" id="review-form" action="/inv/updateReview" method="post">
+    <h3>All fields are required</h3>
+    <fieldset id="postReview">
+        <label>
+        <span class="review-title" id="review-name"><%= initial %>. <%= locals.accountData.account_lastname %></span>
+        </label>
+        <label>
+        <span class="review-title">UPdate your review for this vehicle</span>
+        <textarea name="review_text" rows="8" cols="25" required><%= review_text %></textarea>
+        </label>
+        <input type="submit" class="submitBtn" id="reviewBtn" value="Update review">
+    </fieldset>
+    <input type="hidden" name="inv_id"
+        <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+    <input type="hidden" name="account_id"
+        <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+    <% } %>>
+</form>

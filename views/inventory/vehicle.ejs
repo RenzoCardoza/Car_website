@@ -5,6 +5,16 @@
       res.redirect('/')
     } %>
 
+<!-- Message Block -->
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
 <!-- Vehicle view -->
 <%- vehicleView %>
 
@@ -27,8 +37,7 @@
         </label>
         <label>
           <span class="review-title">Post a review for this vehicle</span>
-          <textarea name="review_text" rows="8" cols="25" placeholder="Provide a review for this vehicle" required>
-          </textarea>
+          <textarea name="review_text" rows="8" cols="25" placeholder="Provide a review for this vehicle" required></textarea>
         </label>
         <input type="submit" class="submitBtn" id="reviewBtn" value="Post review">
     </fieldset>
@@ -36,7 +45,7 @@
         <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
     <% } %>>
     <input type="hidden" name="account_id"
-        <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+        <% if(locals.accountData.account_id) { %> value="<%= locals.accountData.account_id %>"
     <% } %>>
   </form>
 <% } %>

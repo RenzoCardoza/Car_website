@@ -259,7 +259,6 @@ invCont.buildDeleteInventory = async function (req, res, next) {
   let nav = await utilities.getNav()
   const itemData = await invModel.getInventoryByInventoryId(inv_id)
   const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`
-  console.log(itemData)
   res.render("./inventory/delete-confirm", {
     title: "Delete " + itemName,
     nav,
@@ -298,6 +297,19 @@ invCont.deleteInventory = async function (req, res, next) {
     inv_price,
     })
   }
+}
+
+// Function to build the edit reviews view
+invCont.buildEditReview = async function (req, res, next) {
+  const review_id = req.params.reviewId
+  const review_text = await revModel.getReviewTextByReviewId(review_id)
+  let nav = await utilities.getNav()
+  res.render("./inventory/edit-review", {
+    title: "Edit Review",
+    nav,
+    errors: null,
+    review_text,
+  })
 }
 
 module.exports = invCont

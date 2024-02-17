@@ -14,6 +14,13 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 // Route to build the vehicle details by the inventory Id
 router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByInvId));
 
+// Route to get the view for the update review 
+router.get(
+    "/editReview/:reviewId", 
+    utilities.checkLogin,
+    utilities.checkReviewIdToAccount,
+    utilities.handleErrors(invController.buildEditReview));
+
 // Route to get the management view
 router.get(
     "/", 

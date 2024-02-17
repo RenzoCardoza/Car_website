@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const revModel = require("../models/review-model")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 const Util = {}
@@ -219,6 +220,20 @@ Util.checkAccountType = (req, res, next) => {
   }
 }
 
+/* ****************************************
+ *  Check account matching the review
+ * ************************************ */
+Util.checkReviewIdToAccount = async (req, res, next) => {
+  const review_id = req.params.reviewId
+  const review_accId = await revModel.getAccountIdByReviewId(review_id)
+  if (res.locals.accountData.account_id == review_accId){
+    next()
+  } else {
+    req.flash("notice", "Please log in with the account to this review.")
+    return res.redirect("/account/login")
+  }
+}
+
 Util.buildClassificationList = async function (){
   // create a variable to secure the elements
   let data = await invModel.getClassifications()
@@ -257,14 +272,16 @@ Util.buildReviews = async function(reviews) {
     reviews.forEach((row) => {
       container += '<tr>'
       container += `<th class="author"><span class="review-author">${row.account_firstname} ${row.account_lastname}</span></th>` 
-      container += `<th class="rev-date"><span class="review-date">${row.date}</span></th>`
+      container += `<th class="rev-date" colspan="2"><span class="review-date">${row.date}</span></th>`
       container += `</tr>`
       container += '<tr>'
-      container += `<td colspan="2"><p class="review-text">${row.review_text}</p></td>`
+      container += `<td><p class="review-text">${row.review_text}</p></td>`
+      container += `<td><a href='/inv/editReview/${row.review_id}' title='Click to update'>Modify</a></td>`
+      container += `<td><a href='/inv/deleteReview/${row.review_id}' title='Click to delete'>Delete</a></td>`
       container += '</tr>'
     })
   }
-  container += '<tobdy></table>'
+  container += '<tbody></table>'
   container += '</div>'
 
   return container
