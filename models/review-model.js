@@ -35,14 +35,28 @@ async function getAccountIdByReviewId(review_id){
 }
 
 /* ***************************
+ *  Get the review id to use it later
+ * ************************** */
+async function getReviewIdByReviewText(review_text){
+  try {
+    const data = await pool.query(
+      `SELECT review_text FROM public.review WHERE review_id=${review_id};`
+    )
+    return data.rows[0].review_id
+  } catch (error) {
+    console.error("get text by review id " + error)
+  }
+}
+
+/* ***************************
  *  Get the review text to be update later or deleted
  * ************************** */
 async function getReviewTextByReviewId(review_id){
   try {
     const data = await pool.query(
-      `SELECT review_text FROM public.review WHERE review_id=${review_id};`
+      `SELECT review_text, inv_id FROM public.review WHERE review_id=${review_id};`
     )
-    return data.rows[0].review_text
+    return data.rows[0]
   } catch (error) {
     console.error("get text by review id " + error)
   }
@@ -83,15 +97,37 @@ async function deleteReview(review_id) {
  * ************************** */
 async function addNewReview(review_text, inv_id, account_id){
   try {
-    const sql = "INSERT INTO public.review (review_text, inv_id, account_id) VALUES ('$1', '$2', '$3')"
-    const data = await pool.query(sql, [review_text, inv_id, account_id])
+    const sql = `INSERT INTO public.review (review_text, inv_id, account_id) 
+    VALUES ('${review_text}', ${inv_id}, ${account_id})`
+    const data = await pool.query(sql)
     //return the review added as a check mark
-    const test = await pool.query("SELECT * FROM public.review WHERE review_text='$1'", [review_text])
+    const test = await pool.query("SELECT * FROM public.review WHERE review_text=$1", [review_text])
     return test.rows
   } catch (error) {
     console.error("Add New review " + error)
   }
 }
 
+/* ***************************
+ *  Add a new review to the database
+ * ************************** */
+async function getReviewsByAccountId(account_id) {
+  try {
+    console.log(account_id)
+    const sql = `SELECT r.review_id, r.review_text, TO_CHAR(r.review_date::timestamp, 'yyyy-mm-dd') as date, 
+    r.account_id, r.inv_id, a.account_firstname, a.account_lastname 
+    FROM public.review AS r 
+    JOIN public.account AS a ON r.account_id = a.account_id
+    WHERE r.account_id=$1
+    ORDER BY r.review_date DESC;`
+
+    const data = await pool.query(sql, [account_id])
+
+    return data.rows
+  } catch (error) {
+    console.error("get reviews by account id " + error)
+  }
+}
+
 module.exports = { getReviewsbyVehicleId, getAccountIdByReviewId, getReviewTextByReviewId,
-updateReview, deleteReview, addNewReview }
+updateReview, deleteReview, addNewReview, getReviewsByAccountId, getReviewIdByReviewText }

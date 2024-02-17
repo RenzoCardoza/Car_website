@@ -93,7 +93,7 @@ router.post(
 
 // Route for the post method of editing a review 
 router.post(
-    "/editReview/",
+    "/updateReview/",
     validateRev.reviewRules(),
     validateRev.checkUpdateReviewText,
     utilities.handleErrors(invController.editReview)

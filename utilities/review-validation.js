@@ -22,16 +22,26 @@ validateRev.reviewRules = () => {
  * ********************************* */
 validateRev.checkReviewText = async (req, res, next) => {
     const { review_text, inv_id, account_id } = req.body
-    const vehicleData = await invModel.getInventoryByInventoryId(inv_id)
-    const vehicleName = `${vehicleData[0].inv_year} ${vehicleData[0].inv_make} ${vehicleData[0].inv_model}`
     let errors = []
     errors = validationResult(req)
     if (!errors.isEmpty()) {
+        const vehicleData = await invModel.getInventoryByInventoryId(inv_id)
+        const vehicleName = `${vehicleData[0].inv_year} ${vehicleData[0].inv_make} ${vehicleData[0].inv_model}`
+        const reviews = await revModel.getReviewsbyVehicleId(inv_id)
+        const vehicleView = await utilities.buildVehicleDetails(vehicleData)
+        let reviewView
+        if (!reviews.length == 0){
+            reviewView = await utilities.buildReviews(reviews) // build the utilities
+        } else {
+            reviewView = `<p id="no-revs-msg">Currently, there are no reviews for this vehicle</p>`
+        }
         let nav = await utilities.getNav()
         res.render("inventory/vehicle", {
             errors,
             title: vehicleName,
             nav,
+            vehicleView,
+            reviewView,
             review_text,
             account_id,
             inv_id,

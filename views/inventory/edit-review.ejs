@@ -25,8 +25,8 @@
         <span class="review-title" id="review-name"><%= initial %>. <%= locals.accountData.account_lastname %></span>
         </label>
         <label>
-        <span class="review-title">UPdate your review for this vehicle</span>
-        <textarea name="review_text" rows="8" cols="25" required><%= review_text %></textarea>
+        <span class="review-title">Update your review for this vehicle</span>
+        <textarea name="review_text" rows="8" cols="25" required minlength="30"><%= review_text %></textarea>
         </label>
         <input type="submit" class="submitBtn" id="reviewBtn" value="Update review">
     </fieldset>
@@ -34,6 +34,7 @@
         <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
     <% } %>>
     <input type="hidden" name="account_id"
-        <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+        <% if(locals.accountData.account_id) { %> value="<%= locals.accountData.account_id %>"
     <% } %>>
+    <input type="hidden" name="review_id" value="<%= review_id %>">
 </form>

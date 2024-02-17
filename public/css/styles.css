@@ -423,7 +423,6 @@ form fieldset span{
 .reviews tbody tr td a{
   padding: .6em;
 }
-/* .reviews tbody tr td,
-.reviews tbody tr th{
-  border: 1px solid #26408B;
-} */
+.review-heading{
+  margin-top: 3em;
+}

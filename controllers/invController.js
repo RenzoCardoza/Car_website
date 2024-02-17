@@ -27,6 +27,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
  * ************************** */
 invCont.buildByInvId = async function(req, res, next){
   const inv_id = req.params.inventoryId
+  res.locals.inv_id = inv_id
   const data = await invModel.getInventoryByInventoryId(inv_id)
   const reviews = await revModel.getReviewsbyVehicleId(inv_id)
   const vehicleView = await utilities.buildVehicleDetails(data)
@@ -302,13 +303,17 @@ invCont.deleteInventory = async function (req, res, next) {
 // Function to build the edit reviews view
 invCont.buildEditReview = async function (req, res, next) {
   const review_id = req.params.reviewId
-  const review_text = await revModel.getReviewTextByReviewId(review_id)
+  const review = await revModel.getReviewTextByReviewId(review_id)
+  const review_text = review.review_text
+  const inv_id = review.inv_id
   let nav = await utilities.getNav()
   res.render("./inventory/edit-review", {
     title: "Edit Review",
     nav,
     errors: null,
     review_text,
+    review_id,
+    inv_id,
   })
 }
 
@@ -380,9 +385,9 @@ invCont.postReview = async function (req, res, next) {
  *  Update Review on the database
  * ************************** */
 invCont.editReview = async function (req, res, next) {
-  const review_id = req.params.reviewId
   let nav = await utilities.getNav()
-  const { review_text, inv_id } = req.body
+  const { review_text, review_id, inv_id } = req.body
+  console.log(review_id, review_text, inv_id)
   const updateResult = await revModel.updateReview(review_text, review_id)
 
   if (updateResult) {
