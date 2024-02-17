@@ -112,7 +112,12 @@ async function accountLogin(req, res) {
 async function buildManagement(req, res, next) {
   let nav = await utilities.getNav()
   const reviews = await revModel.getReviewsByAccountId(res.locals.accountData.account_id)
-  const reviewByAccount = await utilities.buildReviews(reviews)
+  let reviewByAccount
+  if (!reviews.length == 0){
+    reviewByAccount = await utilities.buildReviews(reviews) // build the utilities
+  } else {
+    reviewByAccount = `<p id="no-revs-msg">You have not posted any reviews</p>`
+  }
   res.render("account/management", {
     title: "Account Management",
     nav,

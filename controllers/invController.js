@@ -395,7 +395,7 @@ invCont.editReview = async function (req, res, next) {
 
   if (updateResult) {
     req.flash("notice", `The review was successfully updated.`)
-    res.redirect(`/inv/detail/${inv_id}`)
+    res.redirect(`/account/`)
   } else {
     req.flash("notice", "Sorry, the update failed.")
     res.status(501).render("inventory/edit-review", {
@@ -417,7 +417,7 @@ invCont.deleteReview = async function (req, res, next) {
 
   if (deleteResult) {
     req.flash("notice", `The deletion was successfully.`)
-    res.redirect(`/inv/detail/${inv_id}`)
+    res.redirect(`/account/`)
   } else {
     req.flash("notice", "Sorry, the deletion failed.")
     res.status(501).render("inventory/delete-review", {
