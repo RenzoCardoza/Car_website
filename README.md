@@ -1,6 +1,11 @@
+## CSE Motors Web App - BackEnd Project
+This repository contains an app that was built using Node.js, EJS, and Express.js
+The app also works with a database in PostgreSQL that contains the data from cars that are available. 
+The database is currently down; nevertheless, it can be rebuilt using the SQL files in the folder. 
+
 ## Getting Started
 
-This document is intended to get you started quickly in building a backend driven Node.js application complete with pages and content, backend logic and a PostgreSQL database for data storage.
+This document is intended to get you started quickly in building a backend-driven Node.js application complete with pages and content, backend logic, and a PostgreSQL database for data storage.
 ## Prerequisites
 
 The only prerequisite software required to have installed at this point is Git for version control and a code editor - we will use VS Code (VSC).
